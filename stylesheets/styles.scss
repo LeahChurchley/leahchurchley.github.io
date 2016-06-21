@@ -1,0 +1,301 @@
+
+@import "reset.scss";
+@import "bourbon/bourbon";
+@import "neat/neat";
+
+
+/* Variables */
+
+$header-color: #226a95;
+$main-font: "Alegreya Sans", sans-serif;
+$header-text-color: #fff;
+$hover-color: #d76549;
+$picture-border-color: #30847a;
+
+$mobile: new-breakpoint(max-width 500px);
+
+/* Default styles */
+
+body {
+	font-family: $main-font;
+	font-size: 1.2em;
+	font-weight: 300;
+	margin: 0 auto;
+}
+
+main {
+	@include outer-container;
+	margin-right: auto;
+	margin-left: auto;
+	padding: 20px;
+	max-width: 1000px;
+	width: 100%;
+
+	h2 {
+		font-size: 2em;
+		font-weight: 400;
+		margin: 10px 0;
+		text-align: center;
+	}
+
+	h3,
+	li,
+	p {
+
+		&:not(:last-child) {
+			margin-bottom: 0.5em;
+		}
+	}
+}
+
+
+/* Header */
+
+header {
+	background-color: $header-color;
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: 25px;
+	padding-bottom: 25px;
+
+	h1 {
+		text-align: center;
+		color: $header-text-color;
+		font-size: 2em;
+		padding-top: 10px;
+	}
+
+	h2 {
+		text-align: center;
+		color: $header-text-color;
+		font-size: 1.5em;
+		font-weight: 100;
+		font-style: italic;
+	}
+}
+
+.logo {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.icons ul,
+.menu ul {
+	list-style-type: none;
+	padding-left: 0;
+}
+
+.icons li,
+.menu li {
+	display: inline-block;
+}
+
+.icons {
+	text-align: center;
+	padding-top: 10px;
+	padding-bottom: 0;
+
+	svg {
+		height: 35px;
+		width: 35px;
+		margin: 10px;
+		color: #11415c;
+		opacity: 0.4;
+
+		&:hover {
+			fill: $hover-color;
+		}
+	}
+}
+
+.menu {
+	text-align: center;
+	padding: 10px;
+
+	a {
+		margin: 10px;
+		text-decoration: none;
+		color: #368bb1;
+	}
+
+	a:hover {
+		color: $header-text-color;
+	}
+
+	.current {
+		color: $header-text-color;
+	}
+}
+
+.email {
+	text-align: center;
+	font-weight: 100;
+
+	a {
+		text-decoration: none;
+		color: $header-text-color;
+	}
+}
+
+/* About page */
+
+.profile {
+	@include span-columns(3);
+
+	img {
+		height: 225px;
+		width: 225px;
+		border-radius: 125px;
+	}
+
+	/**
+	 * When the image is larger than the 1/4 width column it's contained in,
+	 * allow the column to take up the whole width.
+	 */
+
+	$profile_break: new-breakpoint(max-width 225px / 0.2323176);
+	@include media($profile_break) {
+		@include span-columns(12);
+		margin-bottom: 1em;
+
+		img {
+			display: block;
+			margin: auto;
+		}
+	}
+}
+
+
+.bio {
+	@include span-columns(9);
+	@include omega;
+
+	/**
+	 * When the image is larger than the 1/4 width column it's contained in,
+	 * allow the column to take up the whole width.
+	 */
+	$profile_break: new-breakpoint(max-width 225px / 0.2323176);
+	@include media($profile_break) {
+		@include span-columns(12);
+	}
+}
+
+/* Instagram Carousel */
+
+.instagram_carousel {
+	@include span-columns(12);
+
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 2em;
+	margin-bottom: 100em;
+	border: 2.5px solid $picture-border-color;
+
+	div img {
+		margin-right: auto;
+		margin-left: auto;
+		width: 100%;
+		height: 100%;
+		border: 2.5px solid $picture-border-color;
+	}
+
+	.slick-dots {
+		bottom: auto;
+	}
+}
+
+
+.button {
+	clear: both;
+	padding: 0.5em 1em;
+	text-align: center;
+	display: block;
+	width: 15em;
+	max-width: 100%;
+	margin: 0.5em auto 2em auto;
+	font-weight: 100;
+	border-radius: 8px;
+	box-shadow: 6px 4px 7px 0 rgba(181, 177, 181, 1);
+	text-decoration: none;
+	color: white;
+	background-color: $picture-border-color;
+
+	&:hover {
+		color: white;
+		background-color: $hover-color;
+	}
+}
+
+
+
+
+/* Resume */
+
+.resume_head {
+	@include span-columns(12);
+	@include omega;
+
+	font-size: 1.75em;
+	padding: 0.5em;
+	background-color: rgba(30, 114, 103, 0.6);
+	border-radius: 5px;
+	margin: 1em 0;
+	text-transform: uppercase;
+	text-align: left;
+}
+
+.experience_list {
+	@include span-columns(12);
+	@include omega();
+	column-width: 10em;
+
+	li:not(:last-child) {
+		margin-bottom: 0;
+	}
+}
+
+.experience_illustration {
+	@include span-columns(6);
+
+	&:not(:last-child) {
+		margin-bottom: 1em;
+	}
+
+	img {
+		height: 140px;
+		width: 225px;
+		border: 2.5px solid $picture-border-color;
+	}
+
+	@include media($mobile) {
+		@include span-columns(12);
+		text-align: center;
+	}
+}
+
+.experience_info {
+	@include span-columns(6);
+	@include omega();
+
+	&:not(:last-child) {
+		margin-bottom: 1em;
+	}
+
+	a {
+		text-decoration: none;
+		color: $hover-color;
+	}
+
+	@include media($mobile) {
+		@include span-columns(12);
+	}
+}
+
+.experience_illustration.dummy {
+	@include media($mobile) {
+		display: none;
+	}
+}
+
+
